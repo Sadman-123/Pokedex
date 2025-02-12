@@ -6,13 +6,13 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 class _HomeState extends State<Home> {
-  TextEditingController pokecontroller = TextEditingController();
+  TextEditingController pokeController = TextEditingController();
   bool isLoading = false;
   String? pokemonName;
   String? pokemonImageUrl;
   Future<void> getPokemon()
   async {
-    if (pokecontroller.text.isEmpty) {
+    if (pokeController.text.isEmpty) {
       showDialog(
         context: context,
         builder: (context) {
@@ -38,7 +38,7 @@ class _HomeState extends State<Home> {
     });
 
     try {
-      var url = Uri.parse("https://pokeapi.co/api/v2/pokemon/${pokecontroller.text.toLowerCase()}");
+      var url = Uri.parse("https://pokeapi.co/api/v2/pokemon/${pokeController.text.toLowerCase()}");
       var res = await http.get(url, headers: {'Content-Type': 'application/json'});
 
       if (res.statusCode == 200) {
@@ -48,7 +48,7 @@ class _HomeState extends State<Home> {
           pokemonImageUrl = data['sprites']['front_default'];
           isLoading = false;
         });
-        pokecontroller.clear();
+        pokeController.clear();
         Navigator.pop(context);
       } else {
         throw Exception('Failed to load Pokémon');
@@ -62,8 +62,8 @@ class _HomeState extends State<Home> {
   }
   @override
   Widget build(BuildContext context) {
-    var mdw = MediaQuery.of(context).size.width;
-    var mdh = MediaQuery.of(context).size.height;
+    var mdw = MediaQuery.sizeOf(context).width;
+    var mdh = MediaQuery.sizeOf(context).height;
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -109,14 +109,14 @@ class _HomeState extends State<Home> {
                             child: Column(
                               children: [
                                 Text(
-                                  "Search",
+                                  "Search your pokemon card",
                                   style: TextStyle(fontSize: mdw * 0.084),
                                 ),
                                 SizedBox(height: mdh * 0.06),
                                 Container(
                                   width: mdw * 0.77,
                                   child: TextField(
-                                    controller: pokecontroller,
+                                    controller: pokeController,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: mdw * 0.051,
