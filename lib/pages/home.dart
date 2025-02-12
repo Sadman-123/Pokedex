@@ -80,7 +80,7 @@ class _HomeState extends State<Home> {
                   ),
                   Container(
                     child: Text(
-                      pokemonName ?? "Welcome",
+                      pokemonName ?? "Lets Play",
                       style: TextStyle(fontSize: mdw * 0.13),
                     ),
                   ),
@@ -183,7 +183,7 @@ class _HomeState extends State<Home> {
                     width: mdw * 0.6,
                     child: Center(
                       child: Text(
-                        "Search Pokemon",
+                        "Find Pokemon",
                         style: TextStyle(
                           fontSize: mdw * 0.05,
                           fontWeight: FontWeight.bold,

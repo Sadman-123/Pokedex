@@ -9,6 +9,7 @@ class Main extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "Pokemon Card",
       theme: ThemeData(
         brightness: Brightness.light,
         scaffoldBackgroundColor: Color(0xFFFFFFF0),
